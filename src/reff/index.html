@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>KomikKu — Baca Komik Online</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a href="#/" class="brand">📖 KomikKu</a>
+      <div class="search-box">
+        <input id="searchInput" type="text" placeholder="Cari judul komik..." />
+        <button id="searchBtn">Cari</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="app" class="app"></main>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="api.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
