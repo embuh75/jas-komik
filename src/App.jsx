@@ -1,24 +1,18 @@
 import "./App.css";
 import Header from "./components/Header";
 import ComicCard from "./components/ComicCard";
-import Pagination from "./components/Pagination";
 import { useQuery } from "@tanstack/react-query";
+import { getUser } from "./api/getUser";
 
 function App() {
   const {
     isPending,
     error,
-    data: favorites,
+    data: user,
   } = useQuery({
-    queryKey: ["doujinshi"],
-    queryFn: async () => {
-      const id = 6620885; //nhentai id
-      const username = "saia"; //nhentai username
-      const response = await fetch(`/api/users/${id}/${username}`);
-
-      return await response.json();
-    },
-    select: (data) => data.recent_favorites,
+    queryKey: ["user"],
+    queryFn: async () => getUser(6620885, "saia"),
+    select: (data) => data,
   });
 
   return (
@@ -30,17 +24,15 @@ function App() {
         {error && (
           <div className="state">An error has occurred: {error.message}</div>
         )}
-        {favorites?.map((item) => (
+        {user?.recent_favorites.map((item) => (
           <ComicCard
-            id={item.id}
+            key={item.id}
             thumbnail={item.thumbnail}
             en_title={item.english_title}
             pages={item.num_pages}
           />
         ))}
       </div>
-      {/* {favorites.length == 0 && (<div className="state">Tidak ada komik ditemukan.</div>)} */}
-      <Pagination />
     </>
   );
 }
