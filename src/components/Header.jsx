@@ -5,7 +5,7 @@ export default function Header() {
     <header className="topbar">
       <div className="topbar-inner">
         <a href="#/" className="brand">
-          📖 KomikKu
+          Jas Komik
         </a>
         <div className="search-box">
           <input
