@@ -2,7 +2,7 @@ import "./App.css";
 import Header from "./components/Header";
 import ComicCard from "./components/ComicCard";
 import { useQuery } from "@tanstack/react-query";
-import { getUser } from "./api/getUser";
+import { getByTag } from "./api/galleries";
 
 function App() {
   const {
@@ -11,7 +11,7 @@ function App() {
     data: user,
   } = useQuery({
     queryKey: ["user"],
-    queryFn: async () => getUser(6620885, "saia"),
+    queryFn: async () => getByTag(),
     select: (data) => data,
   });
 
@@ -24,7 +24,7 @@ function App() {
         {error && (
           <div className="state">An error has occurred: {error.message}</div>
         )}
-        {user?.recent_favorites.map((item) => (
+        {user?.result.map((item) => (
           <ComicCard
             key={item.id}
             thumbnail={item.thumbnail}

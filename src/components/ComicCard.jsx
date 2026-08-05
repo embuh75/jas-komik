@@ -1,14 +1,6 @@
 import "./style.css";
-/* import { getCDN } from "../api/getCDN";
-import { useQuery } from "@tanstack/react-query"; */
 
 export default function ComicCard({ thumbnail, en_title, pages }) {
-  /* const { data: thumb } = useQuery({
-    queryKey: ["cdn"],
-    queryFn: async () => getCDN(),
-    select: (data) => data.thumb_servers,
-  }); */
-
   return (
     <div className="comic-card">
       <img
