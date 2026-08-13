@@ -5,3 +5,13 @@ export const getByTag = async (tag_id = 19440, sort = "popular-week", page = 1, 
 
   return response.data;
 };
+
+export const getByID = async (id, include = null) => {
+  let response = await nhentaiClient.get(`/galleries/${id}`);
+
+  if (include !== null) {
+    response = await nhentaiClient.get(`/galleries/${id}?include=${include}`);
+  }
+
+  return response.data;
+}

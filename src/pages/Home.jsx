@@ -1,8 +1,8 @@
 import "./styles.css";
-import Header from "../components/Header";
 import ComicCard from "../components/ComicCard";
 import { useQuery } from "@tanstack/react-query";
 import { getByTag } from "../api/galleries";
+import { NavLink } from "react-router-dom";
 
 export default function Home() {
   const {
@@ -16,7 +16,6 @@ export default function Home() {
   });
   return (
     <div>
-      <Header />
       <h2 className="section-title">Komik Terbaru</h2>
       <div className="grid" id="comicGrid">
         {isPending && <div className="state">Loading....</div>}
@@ -24,12 +23,13 @@ export default function Home() {
           <div className="state">An error has occurred: {error.message}</div>
         )}
         {galleries?.result?.map((item) => (
-          <ComicCard
-            key={item.id}
-            thumbnail={item.thumbnail}
-            en_title={item.english_title}
-            pages={item.num_pages}
-          />
+          <NavLink key={item.id} to={`komik/${item.id}`}>
+            <ComicCard
+              thumbnail={item.thumbnail}
+              en_title={item.english_title}
+              pages={item.num_pages}
+            />
+          </NavLink>
         ))}
       </div>
     </div>
